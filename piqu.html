@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>各端访问地址</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { width: 100%; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: linear-gradient(135deg, #1e2a4a 0%, #2d3f6b 50%, #1e2a4a 100%);
+    padding: calc(16px + env(safe-area-inset-top)) 16px calc(20px + env(safe-area-inset-bottom));
+    color: #e8ecf4;
+  }
+  .container { width: 100%; max-width: 640px; margin: 0 auto; }
+
+  header { text-align: center; margin-bottom: 20px; }
+  header h1 { font-size: 24px; font-weight: 700; letter-spacing: 1px; }
+  header p { margin-top: 8px; font-size: 13px; color: #9fb0cf; }
+
+  /* 主页提示横幅 */
+  .notice {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    background: rgba(255, 176, 66, 0.16);
+    border: 1px solid rgba(255, 176, 66, 0.35);
+    color: #ffd28a;
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    padding: 18px;
+    margin-bottom: 16px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  }
+  .card-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .icon {
+    width: 46px; height: 46px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; flex-shrink: 0;
+  }
+  .icon.android { background: rgba(76, 175, 80, 0.2); }
+  .icon.ios { background: rgba(120, 170, 255, 0.2); }
+  .icon.pc { background: rgba(255, 170, 70, 0.2); }
+  .card-title { font-size: 16px; font-weight: 600; }
+  .card-sub { font-size: 12px; color: #9fb0cf; margin-top: 3px; }
+
+  .link-row {
+    display: flex; flex-direction: row; align-items: center; gap: 10px;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 12px; padding: 12px 14px;
+  }
+  .link-text {
+    flex: 1; min-width: 0;
+    font-size: 13px; color: #cfe0ff;
+    word-break: break-all; line-height: 1.5;
+  }
+  .copy-btn {
+    flex-shrink: 0;
+    border: none; cursor: pointer;
+    padding: 9px 14px; border-radius: 10px;
+    font-size: 14px; font-weight: 600; color: #fff;
+    background: linear-gradient(135deg, #4a7dff, #6a5cff);
+    transition: transform 0.15s ease, opacity 0.15s ease;
+  }
+  .copy-btn:active { transform: scale(0.97); }
+  .copy-btn.done { background: linear-gradient(135deg, #2eb872, #20a05e); }
+
+  footer { text-align: center; margin-top: 20px; font-size: 12px; color: #7e8eae; line-height: 1.6; }
+
+  /* 复制成功 toast（屏幕居中） */
+  .toast {
+    position: fixed;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    background: rgba(20, 28, 48, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+    padding: 18px 24px;
+    border-radius: 14px;
+    font-size: 15px; font-weight: 600;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    z-index: 999;
+    max-width: 80vw;
+    text-align: center;
+    line-height: 1.5;
+  }
+  .toast.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  /* 大屏（电脑）下微调 */
+  @media (min-width: 600px) {
+    .link-text { font-size: 14px; }
+    .copy-btn { padding: 10px 18px; font-size: 14px; }
+    header h1 { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>各端访问地址</h1>
+      <p>点击按钮即可一键复制对应链接</p>
+    </header>
+
+    <div class="notice">
+      <span>⚠️</span>
+      <span>复制到手机浏览器打开</span>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="icon android">📱</div>
+        <div>
+          <div class="card-title">安卓 / 鸿蒙 / 澎湃端</div>
+          <div class="card-sub">Android · HarmonyOS · HyperOS</div>
+        </div>
+      </div>
+      <div class="link-row">
+        <div class="link-text" id="url-android">https://wwasp.lanzoul.com/kwydn</div>
+        <button class="copy-btn" data-target="url-android">复制</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="icon ios">🍎</div>
+        <div>
+          <div class="card-title">苹果端</div>
+          <div class="card-sub">iOS · iPadOS</div>
+        </div>
+      </div>
+      <div class="link-row">
+        <div class="link-text" id="url-ios">https://www.jigouclub.com/h5play/</div>
+        <button class="copy-btn" data-target="url-ios">复制</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="icon pc">💻</div>
+        <div>
+          <div class="card-title">电脑端</div>
+          <div class="card-sub">Windows · macOS</div>
+        </div>
+      </div>
+      <div class="link-row">
+        <div class="link-text" id="url-pc">https://www.jigouclub.com/pcplay/</div>
+        <button class="copy-btn" data-target="url-pc">复制</button>
+      </div>
+    </div>
+
+    <footer>如链接无法打开，请复制后粘贴到手机浏览器地址栏访问</footer>
+  </div>
+
+  <div class="toast" id="toast">已复制，请复制到浏览器打开！</div>
+
+<script>
+  function fallbackCopy(text) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    return ok;
+  }
+
+  const toast = document.getElementById('toast');
+  let toastTimer = null;
+  function showToast(msg) {
+    toast.innerText = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () {
+      toast.classList.remove('show');
+    }, 2200);
+  }
+
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', async function () {
+      const text = document.getElementById(btn.dataset.target).innerText.trim();
+      let success = false;
+      if (navigator.clipboard && window.isSecureContext) {
+        try {
+          await navigator.clipboard.writeText(text);
+          success = true;
+        } catch (e) {
+          success = fallbackCopy(text);
+        }
+      } else {
+        success = fallbackCopy(text);
+      }
+
+      if (success) {
+        btn.classList.add('done');
+        showToast('已复制，请复制到浏览器打开！');
+        setTimeout(function () { btn.classList.remove('done'); }, 1800);
+      } else {
+        showToast('复制失败，请长按链接手动复制');
+      }
+    });
+  });
+</script>
+</body>
+</html>
